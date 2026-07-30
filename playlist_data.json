@@ -1,0 +1,65 @@
+{
+  "playlists": {
+    "happy": {
+      "track_1": {
+        "title": "Dare you to love",
+        "artist": "Joong and Dunk",
+        "url": "https://www.youtube.com/watch?v=Zezj30oOUds&list=RDZezj30oOUds&start_radio=1"
+      },
+      "track_2": {
+        "title": "Touch",
+        "artist": "Jasper",
+        "url": "https://www.youtube.com/watch?v=qLb9ZfWBxIw&list=RDZezj30oOUds&index=2"
+      }
+    },
+    "sad": {
+      "track_1": {
+        "title": "Hold On",
+        "artist": "Chord Overstreet",
+        "url": "https://www.youtube.com/watch?v=8ofCZObsnOo&list=RD8ofCZObsnOo&start_radio=1"
+      },
+      "track_2": {
+        "title": "Fix You",
+        "artist": "Coldplay",
+        "url": "https://www.youtube.com/watch?v=k4V3Mo61fJM&list=RDk4V3Mo61fJM&start_radio=1"
+      }
+    },
+    "anxious": {
+      "track_1": {
+        "title": "No suprises",
+        "artist": "Radio Heads",
+        "url": "https://www.youtube.com/watch?v=7Wd6Qt-u4QM&list=RD7Wd6Qt-u4QM&start_radio=1"
+      },
+      "track_2":{
+        "title":"Noel's Lament",
+        "artist": "Kholby ",
+        "url":"https://www.youtube.com/watch?v=9UhAxC4RGj4&list=RD7Wd6Qt-u4QM&index=2"
+      }
+    },
+    "neutral":{
+      "track_1": {
+      "title":"Jolene",
+      "artist":"Miley Cyrus",
+      "url":"https://www.youtube.com/watch?v=wOwblaKmyVw&list=PLP2qAKm-AAm9hIxpLbaMOcG2428lrssd5&index=2"
+    },
+    "track_2":{
+      "title":"Fly",
+      "artist":"Maddie and Tea",
+      "url":"https://www.youtube.com/watch?v=KfDr_7LN-Ew&list=PLP2qAKm-AAm9hIxpLbaMOcG2428lrssd5&index=3"
+    }
+  },
+  "angry":{
+    "track_1":{
+      "title":"Healing",
+      "artist":"Beutiful Melodies",
+      "url":"https://www.youtube.com/watch?v=6m2Ma8uX74s&list=RD6m2Ma8uX74s&start_radio=1"
+    },
+    "track_2":{
+      "title":"Sunny Morning",
+      "artist":"Peder B Helland",
+      "url":"https://www.youtube.com/watch?v=hlWiI4xVXKY&list=RD6m2Ma8uX74s&start_radio=1"
+    }
+  }
+}
+}
+    
