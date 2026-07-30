@@ -38,9 +38,13 @@ class AmbientAudioEngine:
 
     def get_firebase_node(self, node_name):
         try:
-            response = requests.get(f"{BASE_URL}{node_name}.json", timeout=5)
+            response = requests.get(f"{BASE_URL}{node_name}.json", timeout=10)  # increased from 5s
             if response.status_code == 200:
                 return response.json()
+            else:
+                logger.warning(f"Firebase returned status {response.status_code} for node '{node_name}'")
+        except requests.exceptions.Timeout:
+            logger.warning(f"Firebase read timed out for '{node_name}' — will retry.")
         except Exception as e:
             logger.error(f"Error fetching Firebase node '{node_name}': {e}")
         return None
@@ -111,8 +115,11 @@ class AmbientAudioEngine:
                     else:
                         logger.warning(f"No playlist matching '{target_mood}' found in playlist_data.json.")
 
-            # 2-second polling window
-            time.sleep(2)
+            # 2-second polling window — back off to 10s if Firebase is slow
+            if status_data is None:
+                time.sleep(10)  # back off when Firebase is unreachable
+            else:
+                time.sleep(2)
 
 
 if __name__ == "__main__":
