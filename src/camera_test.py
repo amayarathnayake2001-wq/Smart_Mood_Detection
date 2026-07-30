@@ -1,7 +1,8 @@
 import cv2
 
 # Initialize the built-in laptop camera (0 is usually the default webcam)
-cap = cv2.VideoCapture(0)
+# Using DirectShow to prevent MSMF errors on Windows
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 if not cap.isOpened():
     print("Error: Could not open laptop camera.")

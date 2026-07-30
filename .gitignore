@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+mood_env/
+venv/
+env/
+
+# Environment variables
+.env
+
+# IDE / OS
+.vscode/
+.DS_Store
