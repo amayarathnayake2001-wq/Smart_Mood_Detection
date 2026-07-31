@@ -1,6 +1,7 @@
-opencv-python
-deepface
-requests
-python-dotenv
-python-vlc
-tf-keras
+opencv-python>=4.8.0
+deepface>=0.0.93
+tensorflow>=2.13.0
+pygame>=2.5.0
+numpy>=1.24.0
+retina-face>=0.0.17
+pyrebase4>=4.7.1
