@@ -56,6 +56,24 @@ lands on those.
 python main.py
 ```
 
+### Desktop dashboard
+
+The desktop application reads sensor values from Firebase only. It does not
+connect to the ESP32 REST API directly.
+
+```bash
+python desktop_app.py
+```
+
+The first desktop build includes:
+
+- live camera and stabilized emotion detection;
+- Firebase temperature, humidity, light, and noise cards;
+- Firebase connection and camera status;
+- automatic/manual music mode;
+- play/pause, next, stop, and volume controls; and
+- clean background-worker shutdown.
+
 A webcam window opens showing:
 - **Live** — the raw per-frame DeepFace reading (noisy, updates fast)
 - **Stable** — the smoothed emotion the system has actually locked onto

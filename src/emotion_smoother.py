@@ -14,6 +14,12 @@ class EmotionSmoother:
             return  # discard low-confidence noise
         self.buffer.append((emotion, confidence))
 
+    def reset(self):
+        self.buffer.clear()
+        self.stable_emotion = None
+        self.candidate_emotion = None
+        self.candidate_since = None
+
     def _majority(self):
         if not self.buffer:
             return None, 0.0

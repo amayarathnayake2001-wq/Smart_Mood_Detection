@@ -3,7 +3,12 @@ import pygame
 from deepface import DeepFace
 
 from src.config import DETECTOR_BACKENDS, MUSIC_DIR, CAPTURE_WIDTH, CAPTURE_HEIGHT, ANALYZE_EVERY_N_FRAMES
-from src.firebase_client import init_firebase, push_to_firebase, get_auto_mode
+from src.firebase_client import (
+    get_auto_mode,
+    init_firebase,
+    push_to_firebase,
+    update_playback_state,
+)
 from src.music_player import MusicPlayer
 from src.emotion_smoother import EmotionSmoother
 from src.analysis_worker import AnalysisWorker
@@ -43,6 +48,7 @@ def run():
         raise RuntimeError("Could not open webcam. Check camera permissions/index.")
 
     frame_count = 0
+    last_result_id = -1
     last_label = "warming up..."
 
     print("[RUN] Starting detection loop. Press 'q' to quit.")
@@ -58,8 +64,9 @@ def run():
             if frame_count % ANALYZE_EVERY_N_FRAMES == 0:
                 worker.submit(frame)
 
-            emotion, confidence, last_label = worker.get_latest()
-            if emotion is not None:
+            result_id, emotion, confidence, last_label = worker.get_latest_with_id()
+            if emotion is not None and result_id != last_result_id:
+                last_result_id = result_id
                 smoother.add_reading(emotion, confidence)
 
             stable_emotion, avg_conf, changed = smoother.update()
@@ -67,7 +74,13 @@ def run():
                 print(f"[EMOTION] Stabilized on '{stable_emotion}' ({avg_conf:.1f}% avg confidence)")
                 push_to_firebase(stable_emotion, avg_conf)
                 if get_auto_mode():
-                    player.maybe_switch(stable_emotion)
+                    track = player.maybe_switch(stable_emotion)
+                    if track:
+                        update_playback_state(
+                            player.current_emotion,
+                            player.current_track,
+                            player.is_playing(),
+                        )
                 else:
                     print("[MUSIC] Skipped auto-switch — mobile app has auto_mode off.")
 
